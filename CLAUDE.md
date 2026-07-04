@@ -1,6 +1,8 @@
 # landing-page
 
-Landing page pessoal (portfólio) publicada via GitHub Pages.
+Site pessoal profissional (Rodrigo Paiva — Cientista de Dados / Engenheiro de IA),
+publicado via GitHub Pages. Seções: hero, experiência (timeline), projetos,
+conteúdos/blog técnico, tecnologias, certificações, sobre e contato.
 
 ## Stack
 
