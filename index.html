@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rodrigo Paiva — Desenvolvedor</title>
+  <meta name="description" content="Portfólio de Rodrigo Paiva — desenvolvedor de software." />
+  <link rel="icon" href="data:," />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header class="header">
+    <nav class="nav container">
+      <a href="#top" class="logo">RP</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projetos">Projetos</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="top" class="hero container">
+      <p class="hero-eyebrow">Olá, eu sou</p>
+      <h1>Rodrigo Paiva</h1>
+      <p class="hero-role">Desenvolvedor de Software</p>
+      <p class="hero-text">
+        Construo aplicações web simples, rápidas e bem cuidadas.
+        Este é meu espaço para mostrar projetos e formas de contato.
+      </p>
+      <div class="hero-actions">
+        <a href="#projetos" class="btn btn-primary">Ver projetos</a>
+        <a href="#contato" class="btn btn-outline">Falar comigo</a>
+      </div>
+    </section>
+
+    <section id="sobre" class="section container">
+      <h2 class="section-title">Sobre</h2>
+      <p class="section-text">
+        Escreva aqui um resumo curto sobre você: sua trajetória, o que te
+        motiva a programar e o tipo de problema que gosta de resolver.
+        Duas ou três frases já são suficientes.
+      </p>
+    </section>
+
+    <section id="skills" class="section container">
+      <h2 class="section-title">Skills</h2>
+      <ul class="skills-grid">
+        <li class="skill-badge">HTML</li>
+        <li class="skill-badge">CSS</li>
+        <li class="skill-badge">JavaScript</li>
+        <li class="skill-badge">Git</li>
+        <li class="skill-badge">Node.js</li>
+        <li class="skill-badge">React</li>
+      </ul>
+    </section>
+
+    <section id="projetos" class="section container">
+      <h2 class="section-title">Projetos</h2>
+      <div class="projects-grid">
+        <article class="project-card">
+          <h3>Projeto 1</h3>
+          <p>Descrição curta do projeto e as tecnologias usadas.</p>
+          <a href="#" class="project-link">Ver repositório →</a>
+        </article>
+        <article class="project-card">
+          <h3>Projeto 2</h3>
+          <p>Descrição curta do projeto e as tecnologias usadas.</p>
+          <a href="#" class="project-link">Ver repositório →</a>
+        </article>
+        <article class="project-card">
+          <h3>Projeto 3</h3>
+          <p>Descrição curta do projeto e as tecnologias usadas.</p>
+          <a href="#" class="project-link">Ver repositório →</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="contato" class="section container">
+      <h2 class="section-title">Contato</h2>
+      <p class="section-text">Prefere falar por outro canal? Me encontre aqui:</p>
+      <ul class="contact-links">
+        <li><a href="mailto:seuemail@exemplo.com">Email</a></li>
+        <li><a href="https://github.com/seu-usuario" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/seu-usuario" target="_blank" rel="noopener">LinkedIn</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p class="container">&copy; <span id="year"></span> Rodrigo Paiva. Todos os direitos reservados.</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
