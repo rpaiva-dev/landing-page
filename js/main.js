@@ -28,3 +28,32 @@ const revealObserver = new IntersectionObserver(
 );
 
 document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el));
+
+// Modal (article "read more")
+document.querySelectorAll("[data-modal-target]").forEach((trigger) => {
+  trigger.addEventListener("click", () => {
+    const modal = document.getElementById(trigger.getAttribute("data-modal-target"));
+    if (modal) {
+      modal.hidden = false;
+      document.body.style.overflow = "hidden";
+    }
+  });
+});
+
+document.querySelectorAll(".modal").forEach((modal) => {
+  modal.querySelectorAll("[data-modal-close]").forEach((closer) => {
+    closer.addEventListener("click", () => {
+      modal.hidden = true;
+      document.body.style.overflow = "";
+    });
+  });
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    document.querySelectorAll(".modal:not([hidden])").forEach((modal) => {
+      modal.hidden = true;
+      document.body.style.overflow = "";
+    });
+  }
+});

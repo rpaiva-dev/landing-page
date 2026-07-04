@@ -17,14 +17,15 @@
         <span></span><span></span><span></span>
       </button>
       <ul class="nav-links" id="navLinks">
-        <li><a href="#inicio">Início</a></li>
-        <li><a href="#experiencia">Experiência</a></li>
-        <li><a href="#projetos">Projetos</a></li>
-        <li><a href="#conteudos">Conteúdos</a></li>
-        <li><a href="#tecnologias">Tecnologias</a></li>
-        <li><a href="#sobre">Sobre</a></li>
-        <li><a href="#contato" class="nav-cta">Contato</a></li>
+        <li><a href="#inicio" data-i18n="nav.inicio">Início</a></li>
+        <li><a href="#experiencia" data-i18n="nav.experiencia">Experiência</a></li>
+        <li><a href="#projetos" data-i18n="nav.projetos">Projetos</a></li>
+        <li><a href="#conteudos" data-i18n="nav.conteudos">Conteúdos</a></li>
+        <li><a href="#tecnologias" data-i18n="nav.tecnologias">Tecnologias</a></li>
+        <li><a href="#sobre" data-i18n="nav.sobre">Sobre</a></li>
+        <li><a href="#contato" class="nav-cta" data-i18n="nav.contato">Contato</a></li>
       </ul>
+      <button id="langToggle" class="lang-toggle" type="button" aria-label="Change language">EN</button>
     </nav>
   </header>
 
@@ -33,19 +34,19 @@
     <section id="inicio" class="hero">
       <div class="hero-bg" aria-hidden="true"></div>
       <div class="container hero-content reveal">
-        <p class="eyebrow">Olá, eu sou</p>
+        <p class="eyebrow" data-i18n="hero.eyebrow">Olá, eu sou</p>
         <h1>Rodrigo Paiva</h1>
-        <p class="hero-role">
+        <p class="hero-role" data-i18n="hero.role">
           Cientista de Dados <span class="dot">•</span> Engenheiro de IA <span class="dot">•</span>
           Especialista em Machine Learning, Visão Computacional e IA Generativa
         </p>
-        <p class="hero-text">
+        <p class="hero-text" data-i18n="hero.text">
           Desenvolvendo soluções inteligentes que transformam dados em resultados reais
           através de Inteligência Artificial, Automação e Analytics Avançado.
         </p>
         <div class="hero-actions">
-          <a href="#experiencia" class="btn btn-primary">Ver Experiência</a>
-          <a href="#projetos" class="btn btn-outline">Explorar Projetos</a>
+          <a href="#experiencia" class="btn btn-primary" data-i18n="hero.btn1">Ver Experiência</a>
+          <a href="#projetos" class="btn btn-outline" data-i18n="hero.btn2">Explorar Projetos</a>
         </div>
       </div>
     </section>
@@ -53,24 +54,26 @@
     <!-- EXPERIÊNCIA -->
     <section id="experiencia" class="section">
       <div class="container">
-        <p class="section-eyebrow reveal">Trajetória</p>
-        <h2 class="section-title reveal">Experiência Profissional</h2>
+        <p class="section-eyebrow reveal" data-i18n="exp.eyebrow">Trajetória</p>
+        <h2 class="section-title reveal" data-i18n="exp.title">Experiência Profissional</h2>
 
         <ol class="timeline">
           <li class="timeline-item reveal">
             <div class="timeline-marker"></div>
             <div class="timeline-card">
               <div class="timeline-head">
-                <h3>Data Scientist</h3>
+                <h3 data-i18n="exp.vale.title">Data Scientist</h3>
                 <span class="timeline-company">Vale</span>
               </div>
-              <p class="timeline-desc">
-                Desenvolvimento de soluções de Inteligência Artificial para operações
-                industriais de grande escala.
+              <p class="timeline-desc" data-i18n="exp.vale.desc">
+                Responsável por projetar, desenvolver e colocar em produção soluções de
+                Inteligência Artificial para operações industriais de grande escala,
+                atuando desde a concepção do modelo até a integração com sistemas de
+                monitoramento em tempo real.
               </p>
 
-              <h4 class="timeline-subhead">Principais áreas</h4>
-              <ul class="tag-list">
+              <h4 class="timeline-subhead" data-i18n="exp.vale.areasTitle">Principais áreas</h4>
+              <ul class="tag-list" data-i18n="exp.vale.areasList" data-i18n-html>
                 <li>Machine Learning</li>
                 <li>IA Generativa</li>
                 <li>Agentes Inteligentes</li>
@@ -79,8 +82,8 @@
                 <li>Azure AI</li>
               </ul>
 
-              <h4 class="timeline-subhead">Projetos relacionados</h4>
-              <ul class="bullet-list">
+              <h4 class="timeline-subhead" data-i18n="exp.vale.projectsTitle">Projetos relacionados</h4>
+              <ul class="bullet-list" data-i18n="exp.vale.projectsList" data-i18n-html>
                 <li>Manutenção preditiva</li>
                 <li>Monitoramento de ativos</li>
                 <li>Ferrovias</li>
@@ -90,13 +93,23 @@
                 <li>Caminhões fora de estrada</li>
               </ul>
 
-              <h4 class="timeline-subhead">Resultados</h4>
-              <ul class="bullet-list bullet-list-check">
+              <h4 class="timeline-subhead" data-i18n="exp.vale.resultsTitle">Resultados</h4>
+              <ul class="bullet-list bullet-list-check" data-i18n="exp.vale.resultsList" data-i18n-html>
                 <li>Redução de perdas operacionais</li>
                 <li>Detecção antecipada de falhas</li>
                 <li>Aumento de confiabilidade</li>
                 <li>Automação de processos</li>
                 <li>Apoio à tomada de decisão</li>
+              </ul>
+
+              <h4 class="timeline-subhead" data-i18n="exp.vale.toolsTitle">Ferramentas &amp; tecnologias no dia a dia</h4>
+              <ul class="mini-tech-grid">
+                <li><span>🤖</span>Agents</li>
+                <li><span>🖱️</span>Cursor</li>
+                <li><span>🔮</span>Claude</li>
+                <li><span>✨</span>OpenAI</li>
+                <li><span>☁️</span>Azure ML</li>
+                <li><span>🐍</span>Python</li>
               </ul>
             </div>
           </li>
@@ -105,22 +118,22 @@
             <div class="timeline-marker"></div>
             <div class="timeline-card">
               <div class="timeline-head">
-                <h3>Pesquisador em Automação Industrial</h3>
+                <h3 data-i18n="exp.pesquisa.title">Pesquisador em Automação Industrial</h3>
               </div>
-              <p class="timeline-desc">
+              <p class="timeline-desc" data-i18n="exp.pesquisa.desc">
                 Projeto de pesquisa focado em Realidade Aumentada, Indústria 5.0,
                 Interfaces Homem-Máquina e Transformação Digital.
               </p>
 
-              <ul class="tag-list">
+              <ul class="tag-list" data-i18n="exp.pesquisa.tagsList" data-i18n-html>
                 <li>Realidade Aumentada</li>
                 <li>Indústria 5.0</li>
                 <li>Interfaces Homem-Máquina</li>
                 <li>Transformação Digital</li>
               </ul>
 
-              <h4 class="timeline-subhead">Resultados</h4>
-              <ul class="bullet-list bullet-list-check">
+              <h4 class="timeline-subhead" data-i18n="exp.pesquisa.resultsTitle">Resultados</h4>
+              <ul class="bullet-list bullet-list-check" data-i18n="exp.pesquisa.resultsList" data-i18n-html>
                 <li>Publicações científicas</li>
                 <li>Apresentações em congressos</li>
                 <li>Desenvolvimento de aplicação completa em realidade aumentada</li>
@@ -132,10 +145,10 @@
             <div class="timeline-marker"></div>
             <div class="timeline-card">
               <div class="timeline-head">
-                <h3>Data &amp; IT Analyst</h3>
+                <h3 data-i18n="exp.analyst.title">Data &amp; IT Analyst</h3>
               </div>
-              <p class="timeline-desc">Atuação com:</p>
-              <ul class="tag-list">
+              <p class="timeline-desc" data-i18n="exp.analyst.desc">Atuação com:</p>
+              <ul class="tag-list" data-i18n="exp.analyst.tagsList" data-i18n-html>
                 <li>Business Intelligence</li>
                 <li>Desenvolvimento de Sistemas</li>
                 <li>Power BI</li>
@@ -152,64 +165,33 @@
     <!-- PROJETOS -->
     <section id="projetos" class="section section-alt">
       <div class="container">
-        <p class="section-eyebrow reveal">Portfólio</p>
-        <h2 class="section-title reveal">Projetos em Destaque</h2>
+        <p class="section-eyebrow reveal" data-i18n="projects.eyebrow">Portfólio</p>
+        <h2 class="section-title reveal" data-i18n="projects.title">Projetos em Destaque</h2>
 
-        <div class="cards-grid">
-          <article class="project-card reveal">
-            <div class="card-image" aria-hidden="true">🤖</div>
-            <span class="card-category">Agentes de IA</span>
-            <h3>Assistentes Inteligentes com LLMs</h3>
-            <p>Assistentes inteligentes utilizando LLMs para automação de tarefas e suporte à decisão.</p>
-            <ul class="tag-list tag-list-sm">
-              <li>Python</li><li>LLMs</li><li>Azure OpenAI</li>
-            </ul>
-            <a href="#" class="project-link">Ver detalhes →</a>
-          </article>
-
-          <article class="project-card reveal">
-            <div class="card-image" aria-hidden="true">👁️</div>
-            <span class="card-category">Visão Computacional</span>
-            <h3>Detecção Automática de Eventos</h3>
-            <p>Modelos de visão computacional com YOLO e OpenCV para detecção automática de eventos operacionais.</p>
-            <ul class="tag-list tag-list-sm">
-              <li>YOLO</li><li>OpenCV</li><li>Python</li>
-            </ul>
-            <a href="#" class="project-link">Ver detalhes →</a>
-          </article>
-
-          <article class="project-card reveal">
-            <div class="card-image" aria-hidden="true">📈</div>
-            <span class="card-category">Machine Learning</span>
-            <h3>Modelos Preditivos</h3>
-            <p>Modelos preditivos para otimização operacional e manutenção de ativos industriais.</p>
-            <ul class="tag-list tag-list-sm">
-              <li>Machine Learning</li><li>Azure ML</li><li>SQL</li>
-            </ul>
-            <a href="#" class="project-link">Ver detalhes →</a>
-          </article>
-
-          <article class="project-card reveal">
+        <div class="cards-grid cards-grid-single">
+          <a
+            class="project-card project-card-single reveal"
+            href="https://github.com/rpaiva-dev/AR_Tutorial_Master_Degree"
+            target="_blank"
+            rel="noopener"
+          >
             <div class="card-image" aria-hidden="true">🕶️</div>
-            <span class="card-category">Realidade Aumentada</span>
-            <h3>Tutoriais Industriais em AR</h3>
-            <p>Sistema para criação de tutoriais industriais em realidade aumentada.</p>
-            <ul class="tag-list tag-list-sm">
-              <li>AR</li><li>Unity</li><li>C#</li>
+            <span class="card-category" data-i18n="project.ar.category">Realidade Aumentada</span>
+            <h3 data-i18n="project.ar.title">AR Tutorial — Projeto de Mestrado</h3>
+            <p data-i18n="project.ar.summary">
+              Aplicação de Realidade Aumentada desenvolvida como trabalho de mestrado para
+              criação de tutoriais industriais interativos, guiando operadores em
+              procedimentos de manutenção e operação de equipamentos por meio de
+              instruções sobrepostas ao ambiente real.
+            </p>
+            <ul class="tag-list tag-list-sm" data-i18n="project.ar.techsList" data-i18n-html>
+              <li>Unity</li>
+              <li>C#</li>
+              <li>AR Foundation</li>
+              <li>Vuforia</li>
             </ul>
-            <a href="#" class="project-link">Ver detalhes →</a>
-          </article>
-
-          <article class="project-card reveal">
-            <div class="card-image" aria-hidden="true">⚙️</div>
-            <span class="card-category">Automação</span>
-            <h3>Integração de Fluxos Inteligentes</h3>
-            <p>Integração de sistemas e automação de fluxos de trabalho com apoio de IA.</p>
-            <ul class="tag-list tag-list-sm">
-              <li>Automação</li><li>APIs</li><li>Power Automate</li>
-            </ul>
-            <a href="#" class="project-link">Ver detalhes →</a>
-          </article>
+            <span class="project-link" data-i18n="project.ar.cta">Ver no GitHub →</span>
+          </a>
         </div>
       </div>
     </section>
@@ -217,45 +199,25 @@
     <!-- CONTEÚDOS -->
     <section id="conteudos" class="section">
       <div class="container">
-        <p class="section-eyebrow reveal">Blog Técnico</p>
-        <h2 class="section-title reveal">Artigos e Insights</h2>
+        <p class="section-eyebrow reveal" data-i18n="content.eyebrow">Blog Técnico</p>
+        <h2 class="section-title reveal" data-i18n="content.title">Artigos e Insights</h2>
 
-        <ul class="tag-list category-list reveal">
-          <li>Inteligência Artificial</li>
-          <li>IA Generativa</li>
-          <li>Azure</li>
-          <li>Machine Learning</li>
-          <li>Ciência de Dados</li>
-          <li>Python</li>
-          <li>Automação</li>
-          <li>Tecnologia</li>
-          <li>Carreira</li>
-        </ul>
-
-        <div class="cards-grid">
-          <article class="article-card reveal">
-            <div class="card-image" aria-hidden="true">🧠</div>
-            <span class="card-meta">IA Generativa · 5 min de leitura</span>
-            <h3>Como agentes de IA estão mudando a indústria</h3>
-            <p>Um panorama sobre o uso de agentes inteligentes em processos industriais.</p>
-            <span class="card-date">01 jun 2026</span>
-          </article>
-
-          <article class="article-card reveal">
-            <div class="card-image" aria-hidden="true">☁️</div>
-            <span class="card-meta">Azure · 7 min de leitura</span>
-            <h3>Construindo pipelines de ML no Azure</h3>
-            <p>Boas práticas para treinar, versionar e publicar modelos com Azure ML.</p>
-            <span class="card-date">15 mai 2026</span>
-          </article>
-
-          <article class="article-card reveal">
-            <div class="card-image" aria-hidden="true">🐍</div>
-            <span class="card-meta">Python · 4 min de leitura</span>
-            <h3>Boas práticas em projetos de Data Science</h3>
-            <p>Organização de código, testes e reprodutibilidade em projetos de ciência de dados.</p>
-            <span class="card-date">02 mai 2026</span>
-          </article>
+        <div class="cards-grid cards-grid-single">
+          <button
+            class="article-card article-card-btn reveal"
+            type="button"
+            data-modal-target="modal-industria50"
+          >
+            <div class="card-image" aria-hidden="true">🏭</div>
+            <span class="card-meta" data-i18n="content.card.meta">Tecnologia · 6 min de leitura</span>
+            <h3 data-i18n="content.card.title">Indústria 5.0: a evolução da 1.0 até a 5.0</h3>
+            <p data-i18n="content.card.summary">
+              Um panorama sobre como a indústria evoluiu da mecanização a vapor até a
+              colaboração entre humanos e Inteligência Artificial.
+            </p>
+            <span class="card-date" data-i18n="content.card.date">20 jun 2026</span>
+            <span class="project-link" data-i18n="content.card.readMore">Ler artigo completo →</span>
+          </button>
         </div>
       </div>
     </section>
@@ -263,8 +225,8 @@
     <!-- TECNOLOGIAS -->
     <section id="tecnologias" class="section section-alt">
       <div class="container">
-        <p class="section-eyebrow reveal">Stack</p>
-        <h2 class="section-title reveal">Tecnologias</h2>
+        <p class="section-eyebrow reveal" data-i18n="tech.eyebrow">Stack</p>
+        <h2 class="section-title reveal" data-i18n="tech.title">Tecnologias</h2>
 
         <ul class="tech-grid reveal">
           <li class="tech-item"><span class="tech-icon">🐍</span>Python</li>
@@ -280,37 +242,78 @@
           <li class="tech-item"><span class="tech-icon">🐳</span>Docker</li>
           <li class="tech-item"><span class="tech-icon">📈</span>Power BI</li>
         </ul>
-
-        <h3 class="certs-title reveal">Certificações</h3>
-        <ul class="certs-grid reveal">
-          <li class="cert-badge">Azure AI Engineer Associate <span>AI-102</span></li>
-          <li class="cert-badge">Azure Data Scientist Associate <span>DP-100</span></li>
-          <li class="cert-badge">Azure AI Fundamentals</li>
-          <li class="cert-badge">Azure Fundamentals</li>
-          <li class="cert-badge">Azure Data Fundamentals</li>
-        </ul>
       </div>
     </section>
 
     <!-- SOBRE -->
     <section id="sobre" class="section">
-      <div class="container about-grid">
-        <div class="reveal">
-          <p class="section-eyebrow">Quem sou eu</p>
-          <h2 class="section-title">Sobre Mim</h2>
-          <p class="section-text">
-            Sou Cientista de Dados e Engenheiro de IA, com formação em Engenharia e
-            mestrado com foco em automação industrial e tecnologias emergentes.
-            Atuo desenvolvendo soluções de Inteligência Artificial aplicadas a operações
-            de grande escala, unindo Machine Learning, Visão Computacional e IA Generativa
-            a problemas reais de negócio.
-          </p>
-          <p class="section-text">
-            Tenho interesse em pesquisa e inovação, com publicações e apresentações
-            em congressos na área de automação industrial e Realidade Aumentada.
-            Busco constantemente unir ciência de dados, engenharia e tecnologia de
-            ponta para gerar impacto mensurável.
-          </p>
+      <div class="container">
+        <p class="section-eyebrow reveal" data-i18n="about.eyebrow">Quem sou eu</p>
+        <h2 class="section-title reveal" data-i18n="about.title">Sobre Mim</h2>
+        <p class="section-text reveal" data-i18n="about.p1">
+          Sou Cientista de Dados e Engenheiro de IA, atuando no desenvolvimento de
+          soluções de Inteligência Artificial aplicadas a operações de grande escala,
+          unindo Machine Learning, Visão Computacional e IA Generativa a problemas
+          reais de negócio.
+        </p>
+        <p class="section-text reveal" data-i18n="about.p2">
+          Tenho interesse em pesquisa e inovação, com publicações e apresentações
+          em congressos na área de automação industrial e Realidade Aumentada.
+          Busco constantemente unir ciência de dados, engenharia e tecnologia de
+          ponta para gerar impacto mensurável.
+        </p>
+
+        <div class="education-grid reveal">
+          <div class="education-card">
+            <span class="edu-icon" aria-hidden="true">🎓</span>
+            <div>
+              <h4 data-i18n="about.edu.engTitle">Engenharia</h4>
+              <p data-i18n="about.edu.engDesc">Engenheiro pela UFSJ (Universidade Federal de São João del-Rei).</p>
+            </div>
+          </div>
+          <div class="education-card">
+            <span class="edu-icon" aria-hidden="true">📚</span>
+            <div>
+              <h4 data-i18n="about.edu.masterTitle">Mestrado</h4>
+              <p data-i18n="about.edu.masterDesc">Mestre pelo PROFICAM (UFSJ), com pesquisa em automação industrial e Realidade Aumentada.</p>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="certs-title reveal" data-i18n="certs.title">Certificações</h3>
+        <div class="certs-grid reveal">
+          <div class="cert-badge">
+            <span class="cert-icon" aria-hidden="true">🏅</span>
+            <div>
+              <strong>Azure AI Engineer Associate</strong>
+              <span>AI-102</span>
+            </div>
+          </div>
+          <div class="cert-badge">
+            <span class="cert-icon" aria-hidden="true">🏅</span>
+            <div>
+              <strong>Azure Data Scientist Associate</strong>
+              <span>DP-100</span>
+            </div>
+          </div>
+          <div class="cert-badge">
+            <span class="cert-icon" aria-hidden="true">🏅</span>
+            <div>
+              <strong>Azure AI Fundamentals</strong>
+            </div>
+          </div>
+          <div class="cert-badge">
+            <span class="cert-icon" aria-hidden="true">🏅</span>
+            <div>
+              <strong>Azure Fundamentals</strong>
+            </div>
+          </div>
+          <div class="cert-badge">
+            <span class="cert-icon" aria-hidden="true">🏅</span>
+            <div>
+              <strong>Azure Data Fundamentals</strong>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -318,25 +321,65 @@
     <!-- CONTATO -->
     <section id="contato" class="section section-dark">
       <div class="container contact-content reveal">
-        <p class="section-eyebrow">Vamos conversar</p>
-        <h2 class="section-title">Contato</h2>
-        <p class="section-text">
+        <p class="section-eyebrow" data-i18n="contact.eyebrow">Vamos conversar</p>
+        <h2 class="section-title" data-i18n="contact.title">Contato</h2>
+        <p class="section-text" data-i18n="contact.text">
           Aberto a novas conexões, projetos e oportunidades em Inteligência Artificial.
         </p>
         <div class="contact-actions">
           <a href="https://linkedin.com/in/rodrigojspaiva" target="_blank" rel="noopener" class="btn btn-primary">LinkedIn</a>
           <a href="https://github.com/paiva-rodrigo" target="_blank" rel="noopener" class="btn btn-outline">GitHub</a>
-          <a href="mailto:rodrigo.josdepaiva@gmail.com" class="btn btn-outline">Enviar Email</a>
+          <a href="mailto:rodrigo.josdepaiva@gmail.com" class="btn btn-outline" data-i18n="contact.btnEmail">Enviar Email</a>
         </div>
       </div>
     </section>
   </main>
 
   <footer class="footer">
-    <p class="container">“Transformando dados em inteligência e inteligência em resultados.”</p>
+    <p class="container" data-i18n="footer.quote">“Transformando dados em inteligência e inteligência em resultados.”</p>
     <p class="container footer-copy">&copy; <span id="year"></span> Rodrigo Paiva</p>
   </footer>
 
+  <!-- MODAL: Indústria 5.0 -->
+  <div class="modal" id="modal-industria50" hidden>
+    <div class="modal-overlay" data-modal-close></div>
+    <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modal-industria50-title">
+      <button class="modal-close" data-modal-close aria-label="Fechar">×</button>
+      <span class="card-meta" data-i18n="content.card.meta">Tecnologia · 6 min de leitura</span>
+      <h3 id="modal-industria50-title" data-i18n="modal.industria.title">Indústria 5.0: a evolução da 1.0 até a 5.0</h3>
+      <div class="modal-body" data-i18n="modal.industria.body" data-i18n-html>
+        <p>
+          A <strong>Indústria 1.0</strong> nasceu no final do século XVIII com a
+          mecanização a vapor, substituindo o trabalho manual por máquinas e dando
+          início à produção em escala nas fábricas.
+        </p>
+        <p>
+          A <strong>Indústria 2.0</strong>, no início do século XX, trouxe a energia
+          elétrica e as linhas de produção em massa, popularizadas pelo modelo fordista,
+          aumentando drasticamente a velocidade e a padronização da manufatura.
+        </p>
+        <p>
+          A <strong>Indústria 3.0</strong> chegou com a eletrônica, os computadores e a
+          automação de processos a partir da segunda metade do século XX, permitindo
+          controle mais preciso e a substituição de tarefas repetitivas por sistemas
+          automatizados.
+        </p>
+        <p>
+          A <strong>Indústria 4.0</strong> introduziu a conectividade: IoT, big data,
+          computação em nuvem e sistemas ciber-físicos passaram a integrar máquinas,
+          dados e decisões em tempo real, formando fábricas inteligentes.
+        </p>
+        <p>
+          A <strong>Indústria 5.0</strong> representa a próxima etapa: coloca o ser
+          humano de volta ao centro, promovendo colaboração entre pessoas, robôs e
+          Inteligência Artificial, com foco em resiliência, sustentabilidade e
+          personalização — a tecnologia a serviço das pessoas, não o contrário.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/i18n.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
