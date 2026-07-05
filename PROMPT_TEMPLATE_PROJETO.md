@@ -39,9 +39,36 @@ Estilo geral: clean, estilo "Apple/SaaS minimalista", bastante espaço em
 branco, cantos arredondados (`--radius`), sombras suaves só no hover,
 tipografia com `letter-spacing` levemente negativo nos títulos grandes.
 
+## Regra de quebra de linha em textos curtos
+Nenhum título, rótulo de menu, botão ou item de card (ex.: itens do nav,
+labels de `.tech-item`, `.tag-list`) pode quebrar para uma segunda linha de
+forma acidental. Para isso:
+- Use `white-space: nowrap` e `flex-shrink: 0` em links de navegação e labels
+  curtas dentro de containers flex/grid.
+- Prefira rótulos curtos (1-2 palavras) nesses elementos; se o texto for
+  naturalmente longo, redimensione o container ou reduza o font-size antes de
+  deixá-lo quebrar linha.
+- Teste visualmente o menu em ambos os idiomas (PT e EN), já que traduções
+  podem ficar mais longas que o texto original e causar quebras inesperadas.
+
+## Regra de espaçamento no header
+Elementos do header (links do menu, botão de idioma, CTA, hambúrguer) nunca
+podem ficar colados uns nos outros, sem espaço entre si, em nenhuma largura de
+tela. Se o layout do `nav` usar CSS Grid com colunas `1fr auto 1fr` (ou
+similar) para centralizar o menu e alinhar ações à direita, **defina sempre um
+`column-gap` explícito no container** (ex.: `column-gap: 24px`) — colunas
+`1fr` podem encolher até ficar rente ao conteúdo vizinho quando não há espaço
+sobrando, e sem um `gap` explícito isso faz o último item do menu colar no
+botão de idioma/CTA. Teste redimensionando a janela entre o breakpoint mobile
+e a largura máxima do container para confirmar que sempre há espaçamento
+mínimo visível entre os elementos do header.
+
 ## Estrutura de seções (nesta ordem)
-1. **Header** fixo (`position: sticky`) com blur de fundo, nav central e um
-   botão CTA destacado à direita (ex.: "Contato" ou "Ver repositório").
+1. **Header** fixo (`position: sticky`) com blur de fundo. **Não colocar
+   nenhum texto, logotipo ou ícone no canto superior esquerdo** — deixe essa
+   área vazia. O header deve conter apenas: nav centralizado e um botão CTA
+   destacado à direita (ex.: "Contato" ou "Ver repositório"), mais o toggle de
+   idioma e o botão de menu mobile.
 2. **Hero** (`#inicio`): título grande (`clamp(2.5rem, 6vw, 4rem)`), subtítulo,
    texto curto de introdução, dois botões de ação (`btn-primary` e
    `btn-outline`).
@@ -74,19 +101,37 @@ ritmo visual, como no portfólio original.
 - Menu mobile: nav-links colapsados com botão hambúrguer (`.nav-toggle`),
   exibidos em `@media (max-width: 640px)`.
 
-## Internacionalização (opcional, mas recomendado)
-Se o projeto fizer sentido em dois idiomas, usar o mesmo padrão do
-portfólio: atributo `data-i18n="chave.subchave"` em cada elemento de texto,
-mais um objeto JS de traduções (`{ pt: {...}, en: {...} }`) e um botão de
-toggle PT/EN no header (`.lang-toggle`) que troca `textContent`/`innerHTML`
-via JS e persiste a escolha em `localStorage`.
+## Internacionalização
+O idioma padrão do conteúdo é **sempre inglês (`en`)**, independente do
+público-alvo do projeto. Usar o mesmo padrão do portfólio: atributo
+`data-i18n="chave.subchave"` em cada elemento de texto, mais um objeto JS de
+traduções (`{ pt: {...}, en: {...} }`) e um botão de toggle PT/EN no header
+(`.lang-toggle`) que troca `textContent`/`innerHTML` via JS e persiste a
+escolha em `localStorage`. Detalhes importantes:
+- `<html lang="en">` por padrão; o atributo `lang` só muda para `pt-BR`
+  quando o usuário troca manualmente para português.
+- O valor padrão lido do `localStorage` (quando ainda não há escolha salva)
+  deve ser `'en'`, não `'pt'`.
+- O botão `.lang-toggle` deve mostrar o idioma para o qual ele troca (ex.: se
+  o conteúdo atual está em inglês, o botão mostra "PT", e vice-versa).
+- `<title>` e meta description também devem ser escritos em inglês por
+  padrão.
+- **Importante**: o inglês como padrão não é só configuração de `lang`/JS —
+  o texto que já vem escrito no HTML (o conteúdo de cada elemento
+  `data-i18n`, antes mesmo do JS rodar) também deve estar em inglês. O
+  dicionário `en` do JS deve ser idêntico a esse texto padrão; o dicionário
+  `pt` é que contém a tradução, usada só quando o usuário troca o idioma
+  manualmente. Não deixe nenhum texto de interface (menu, botões, títulos de
+  seção, textos de cards) escrito em português no HTML por padrão — apenas
+  nomes próprios, títulos de publicações/artigos e nomes de autores mantêm o
+  idioma original em que foram publicados.
 
 ## Conteúdo
 - Adaptar todas as seções ao contexto específico deste projeto: **[nome do
   projeto]**, **[descrição curta em 1-2 frases]**, **[stack usada]**,
   **[link do repositório]**, **[demo ao vivo, se houver]**.
-- Título da aba (`<title>`) e meta description específicos do projeto.
-- Idioma padrão do conteúdo: **[pt-BR / en]**.
+- Título da aba (`<title>`) e meta description específicos do projeto, em
+  inglês.
 
 ## Deploy
 GitHub Pages: Settings → Pages → Source = branch `main` / pasta `/ (root)`.
