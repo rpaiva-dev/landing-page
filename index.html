@@ -154,6 +154,60 @@ a { color: inherit; }
 .tag-list { list-style: none; display: flex; flex-wrap: wrap; gap: 0.5rem; padding: 0; margin: 0; }
 .tag-list li { background: var(--bg-soft); border: 1px solid var(--line); color: var(--text); border-radius: 999px; padding: 0.32rem 0.85rem; font-size: 0.8rem; font-weight: 500; }
 
+/* Projects toolbar (filter + search) */
+.projects-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0 0 2rem;
+}
+.projects-filters { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.filter-btn {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  color: var(--text-soft);
+  border-radius: 999px;
+  padding: 0.45rem 1.1rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: color var(--transition), border-color var(--transition), background var(--transition);
+}
+.filter-btn:hover { border-color: var(--text-soft); color: var(--text); }
+.filter-btn.active { background: var(--text); border-color: var(--text); color: var(--bg); }
+.projects-search {
+  flex: 1;
+  min-width: 220px;
+  margin-left: auto;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.5rem 1.1rem;
+  font-size: 0.9rem;
+  font-family: inherit;
+  color: var(--text);
+  outline: none;
+  transition: border-color var(--transition);
+  max-width: 320px;
+}
+.projects-search:focus { border-color: var(--text-soft); }
+.projects-search::placeholder { color: var(--text-soft); }
+
+/* Projects grid */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  align-items: stretch;
+}
+.projects-empty { color: var(--text-soft); font-size: 0.95rem; margin: 0.5rem 0 0; display: none; }
+
+@media (max-width: 960px) {
+  .projects-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
 /* Project card */
 .project-card {
   background: var(--bg);
@@ -162,9 +216,12 @@ a { color: inherit; }
   padding: 1.75rem;
   transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
   text-decoration: none;
-  display: block;
-  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
+.project-card p { flex: 1; }
+.project-card.is-hidden { display: none; }
 .project-card:hover { transform: translateY(-3px); border-color: var(--text-soft); box-shadow: 0 16px 32px rgba(29, 29, 31, 0.06); }
 
 .card-category { display: inline-block; color: var(--accent); font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.65rem; }
@@ -233,6 +290,8 @@ a { color: inherit; }
 .footer-copy { margin-top: 0.4rem; font-size: 0.8rem; }
 
 @media (max-width: 640px) {
+  .projects-grid { grid-template-columns: 1fr; }
+  .projects-search { margin-left: 0; max-width: none; }
   .nav { grid-template-columns: auto 1fr auto; }
   .nav-toggle { display: flex; }
   .nav-links {
@@ -370,8 +429,27 @@ a { color: inherit; }
       <p class="section-eyebrow reveal" data-i18n="projects.eyebrow">Portfólio</p>
       <h2 class="section-title reveal" data-i18n="projects.title">Projetos em Destaque</h2>
 
+      <div class="projects-toolbar reveal">
+        <div class="projects-filters" id="projectsFilters">
+          <button type="button" class="filter-btn active" data-filter="all" data-i18n="projects.filter.all">Todos</button>
+          <button type="button" class="filter-btn" data-filter="ar" data-i18n="projects.filter.ar">Realidade Aumentada</button>
+          <button type="button" class="filter-btn" data-filter="rag" data-i18n="projects.filter.rag">IA Generativa · RAG</button>
+        </div>
+        <input
+          type="search"
+          class="projects-search"
+          id="projectsSearch"
+          placeholder="Buscar projeto..."
+          data-i18n="projects.search"
+          data-i18n-placeholder
+          aria-label="Buscar projeto"
+        />
+      </div>
+
+      <div class="projects-grid" id="projectsGrid">
       <a
         class="project-card reveal"
+        data-area="ar"
         href="https://rpaiva-dev.github.io/AR_Tutorial_Master_Degree/"
         target="_blank"
         rel="noopener"
@@ -393,6 +471,35 @@ a { color: inherit; }
         <br />
         <span class="project-link" data-i18n="project.ar.cta">Ver no GitHub →</span>
       </a>
+
+      <a
+        class="project-card reveal"
+        data-area="rag"
+        href="https://rpaiva-dev.github.io/simple_rag_pdf/"
+        target="_blank"
+        rel="noopener"
+      >
+        <span class="card-category" data-i18n="project.ri.category">IA Generativa · RAG</span>
+        <h3 data-i18n="project.ri.title">Simple RAG PDF — RAG do zero</h3>
+        <p data-i18n="project.ri.summary">
+          Sistema de RAG (Retrieval-Augmented Generation) construído do zero, sem
+          frameworks como LangChain, para responder perguntas sobre qualquer
+          documento PDF — sempre citando a página e a seção de origem e admitindo
+          quando a informação não está no documento.
+        </p>
+        <ul class="tag-list" data-i18n="project.ri.techsList" data-i18n-html>
+          <li>Python</li>
+          <li>RAG</li>
+          <li>OpenAI</li>
+          <li>Embeddings</li>
+          <li>Streamlit</li>
+        </ul>
+        <br />
+        <span class="project-link" data-i18n="project.ri.cta">Ver no GitHub →</span>
+      </a>
+      </div>
+
+      <p class="projects-empty" id="projectsEmpty" data-i18n="projects.empty">Nenhum projeto encontrado.</p>
     </div>
   </section>
 
@@ -545,6 +652,44 @@ var revealObserver = new IntersectionObserver(
 );
 document.querySelectorAll(".reveal").forEach(function (el) { revealObserver.observe(el); });
 
+// Projects: area filter + text search
+var projectsFilters = document.getElementById("projectsFilters");
+var projectsSearch = document.getElementById("projectsSearch");
+var projectsEmpty = document.getElementById("projectsEmpty");
+var projectCards = document.querySelectorAll("#projectsGrid .project-card");
+var activeFilter = "all";
+
+function updateProjects() {
+  var query = (projectsSearch.value || "").trim().toLowerCase();
+  var visible = 0;
+
+  projectCards.forEach(function (card) {
+    var matchesArea = activeFilter === "all" || card.getAttribute("data-area") === activeFilter;
+    var matchesQuery = !query || card.textContent.toLowerCase().indexOf(query) !== -1;
+    var show = matchesArea && matchesQuery;
+    card.classList.toggle("is-hidden", !show);
+    if (show) {
+      visible++;
+      // cards escondidos nunca disparam o IntersectionObserver do reveal
+      card.classList.add("in-view");
+    }
+  });
+
+  projectsEmpty.style.display = visible === 0 ? "block" : "none";
+}
+
+projectsFilters.addEventListener("click", function (e) {
+  var btn = e.target.closest(".filter-btn");
+  if (!btn) return;
+  activeFilter = btn.getAttribute("data-filter");
+  projectsFilters.querySelectorAll(".filter-btn").forEach(function (b) {
+    b.classList.toggle("active", b === btn);
+  });
+  updateProjects();
+});
+
+projectsSearch.addEventListener("input", updateProjects);
+
 var translations = {
   en: {
     "nav.inicio": "Home",
@@ -579,12 +724,23 @@ var translations = {
 
     "projects.eyebrow": "Portfolio",
     "projects.title": "Featured Projects",
+    "projects.filter.all": "All",
+    "projects.filter.ar": "Augmented Reality",
+    "projects.filter.rag": "Generative AI · RAG",
+    "projects.search": "Search projects...",
+    "projects.empty": "No projects found.",
 
     "project.ar.category": "Augmented Reality",
     "project.ar.title": "AR Tutorial — Master's Degree Project",
     "project.ar.summary": "Augmented Reality application developed as a master's thesis to create interactive industrial tutorials, guiding operators through equipment maintenance and operation procedures with instructions overlaid on the real environment.",
     "project.ar.techsList": "<li>Unity</li><li>C#</li><li>Industry 5.0</li><li>Vuforia</li>",
     "project.ar.cta": "View on GitHub →",
+
+    "project.ri.category": "Generative AI · RAG",
+    "project.ri.title": "Simple RAG PDF — RAG from scratch",
+    "project.ri.summary": "RAG (Retrieval-Augmented Generation) system built from scratch, without frameworks like LangChain, to answer questions about any PDF document — always citing the source page and section, and admitting when the information is not in the document.",
+    "project.ri.techsList": "<li>Python</li><li>RAG</li><li>OpenAI</li><li>Embeddings</li><li>Streamlit</li>",
+    "project.ri.cta": "View on GitHub →",
 
     "tech.eyebrow": "Stack",
     "tech.title": "Technologies",
@@ -617,7 +773,9 @@ function applyLanguage(lang) {
     if (lang === "pt" || !dict || !(key in dict)) {
       var original = el.getAttribute("data-i18n-original");
       if (original !== null) {
-        if (el.hasAttribute("data-i18n-html")) {
+        if (el.hasAttribute("data-i18n-placeholder")) {
+          el.setAttribute("placeholder", original);
+        } else if (el.hasAttribute("data-i18n-html")) {
           el.innerHTML = original;
         } else {
           el.textContent = original;
@@ -626,7 +784,9 @@ function applyLanguage(lang) {
       return;
     }
 
-    if (el.hasAttribute("data-i18n-html")) {
+    if (el.hasAttribute("data-i18n-placeholder")) {
+      el.setAttribute("placeholder", dict[key]);
+    } else if (el.hasAttribute("data-i18n-html")) {
       el.innerHTML = dict[key];
     } else {
       el.textContent = dict[key];
@@ -643,7 +803,9 @@ function applyLanguage(lang) {
 
 function initI18n() {
   document.querySelectorAll("[data-i18n]").forEach(function (el) {
-    if (el.hasAttribute("data-i18n-html")) {
+    if (el.hasAttribute("data-i18n-placeholder")) {
+      el.setAttribute("data-i18n-original", el.getAttribute("placeholder") || "");
+    } else if (el.hasAttribute("data-i18n-html")) {
       el.setAttribute("data-i18n-original", el.innerHTML.trim());
     } else {
       el.setAttribute("data-i18n-original", el.textContent.trim());
