@@ -195,17 +195,45 @@ a { color: inherit; }
 .projects-search:focus { border-color: var(--text-soft); }
 .projects-search::placeholder { color: var(--text-soft); }
 
+/* Projects carousel */
+.projects-carousel { display: flex; align-items: center; gap: 1rem; }
+.carousel-arrow {
+  flex: 0 0 auto;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 1.4rem;
+  line-height: 1;
+  font-family: inherit;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color var(--transition), border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+}
+.carousel-arrow:hover { color: var(--accent); border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 10px 20px rgba(29, 29, 31, 0.08); }
+.carousel-arrow.is-hidden { display: none; }
+
 /* Projects grid */
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
   align-items: stretch;
+  flex: 1;
+  min-width: 0;
 }
 .projects-empty { color: var(--text-soft); font-size: 0.95rem; margin: 0.5rem 0 0; display: none; }
 
 @media (max-width: 960px) {
   .projects-grid { grid-template-columns: repeat(2, 1fr); }
+  .carousel-arrow { display: none; }
+  .project-card.is-center { transform: none; box-shadow: none; }
+  .project-card.is-center:hover { transform: translateY(-3px); }
+  .project-card.is-side { opacity: 1; }
 }
 
 /* Project card */
@@ -214,7 +242,7 @@ a { color: inherit; }
   border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: 1.75rem;
-  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition), opacity var(--transition);
   text-decoration: none;
   display: flex;
   flex-direction: column;
@@ -223,6 +251,10 @@ a { color: inherit; }
 .project-card p { flex: 1; }
 .project-card.is-hidden { display: none; }
 .project-card:hover { transform: translateY(-3px); border-color: var(--text-soft); box-shadow: 0 16px 32px rgba(29, 29, 31, 0.06); }
+
+.project-card.is-center { transform: scale(1.06); border-color: var(--text-soft); box-shadow: 0 20px 44px rgba(29, 29, 31, 0.1); z-index: 1; }
+.project-card.is-center:hover { transform: scale(1.06) translateY(-3px); }
+.project-card.is-side { opacity: 0.82; }
 
 .card-category { display: inline-block; color: var(--accent); font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.65rem; }
 .project-card h3 { margin: 0 0 0.6rem; font-size: 1.2rem; color: var(--text); font-weight: 700; }
@@ -446,7 +478,9 @@ a { color: inherit; }
         />
       </div>
 
-      <div class="projects-grid" id="projectsGrid">
+      <div class="projects-carousel">
+        <button type="button" class="carousel-arrow carousel-arrow-prev is-hidden" id="projectsPrev" aria-label="Projeto anterior">‹</button>
+        <div class="projects-grid" id="projectsGrid">
       <a
         class="project-card reveal"
         data-area="ar"
@@ -506,15 +540,12 @@ a { color: inherit; }
         rel="noopener"
       >
         <span class="card-category" data-i18n="project.kag.category">IA Generativa · KAG</span>
-        <h3 data-i18n="project.kag.title">KAG Industrial Maintenance — Manutenção de Ativos de Mineração</h3>
+        <h3 data-i18n="project.kag.title">KAG Industrial Maintenance</h3>
         <p data-i18n="project.kag.summary">
           Sistema de KAG (Knowledge Augmented Generation) para manutenção de ativos de
-          mineração, que extrai conhecimento de manuais de equipamentos e constrói um
-          grafo de conhecimento para diagnóstico de falhas em peneiras vibratórias,
-          correias transportadoras, caminhões fora de estrada e britadores de mandíbula.
-          Cada resposta é rastreada por relações reais no grafo — sintoma → causa → ação
-          — através de um algoritmo determinístico, e não por similaridade semântica de
-          texto.
+          mineração, que extrai conhecimento de manuais técnicos e constrói um grafo de
+          falhas — sintoma, causa e ação — garantindo respostas rastreáveis por relações
+          reais, e não por similaridade semântica de texto.
         </p>
         <ul class="tag-list" data-i18n="project.kag.techsList" data-i18n-html>
           <li>Python</li>
@@ -527,6 +558,8 @@ a { color: inherit; }
         <br />
         <span class="project-link" data-i18n="project.kag.cta">Ver no GitHub →</span>
       </a>
+        </div>
+        <button type="button" class="carousel-arrow carousel-arrow-next is-hidden" id="projectsNext" aria-label="Próximo projeto">›</button>
       </div>
 
       <p class="projects-empty" id="projectsEmpty" data-i18n="projects.empty">Nenhum projeto encontrado.</p>
@@ -682,30 +715,76 @@ var revealObserver = new IntersectionObserver(
 );
 document.querySelectorAll(".reveal").forEach(function (el) { revealObserver.observe(el); });
 
-// Projects: area filter + text search
+// Projects: area filter + text search + carousel (3-up, center highlighted)
 var projectsFilters = document.getElementById("projectsFilters");
 var projectsSearch = document.getElementById("projectsSearch");
 var projectsEmpty = document.getElementById("projectsEmpty");
-var projectCards = document.querySelectorAll("#projectsGrid .project-card");
+var projectsPrev = document.getElementById("projectsPrev");
+var projectsNext = document.getElementById("projectsNext");
+var projectCards = Array.prototype.slice.call(document.querySelectorAll("#projectsGrid .project-card"));
 var activeFilter = "all";
+var carouselIndex = 0;
 
-function updateProjects() {
+function getProjectMatches() {
   var query = (projectsSearch.value || "").trim().toLowerCase();
-  var visible = 0;
-
-  projectCards.forEach(function (card) {
+  return projectCards.filter(function (card) {
     var matchesArea = activeFilter === "all" || card.getAttribute("data-area") === activeFilter;
     var matchesQuery = !query || card.textContent.toLowerCase().indexOf(query) !== -1;
-    var show = matchesArea && matchesQuery;
-    card.classList.toggle("is-hidden", !show);
-    if (show) {
-      visible++;
-      // cards escondidos nunca disparam o IntersectionObserver do reveal
-      card.classList.add("in-view");
-    }
+    return matchesArea && matchesQuery;
+  });
+}
+
+function updateProjects() {
+  var matches = getProjectMatches();
+
+  projectCards.forEach(function (card) {
+    card.classList.remove("is-center", "is-side");
+    card.style.order = "";
   });
 
-  projectsEmpty.style.display = visible === 0 ? "block" : "none";
+  if (matches.length === 0) {
+    projectCards.forEach(function (card) { card.classList.add("is-hidden"); });
+    projectsEmpty.style.display = "block";
+    projectsPrev.classList.add("is-hidden");
+    projectsNext.classList.add("is-hidden");
+    return;
+  }
+  projectsEmpty.style.display = "none";
+
+  var isCarousel = window.innerWidth > 960 && matches.length >= 3;
+
+  if (!isCarousel) {
+    projectCards.forEach(function (card) {
+      var show = matches.indexOf(card) !== -1;
+      card.classList.toggle("is-hidden", !show);
+      if (show) card.classList.add("in-view");
+    });
+    projectsPrev.classList.add("is-hidden");
+    projectsNext.classList.add("is-hidden");
+    return;
+  }
+
+  var len = matches.length;
+  carouselIndex = ((carouselIndex % len) + len) % len;
+  var prevCard = matches[(carouselIndex - 1 + len) % len];
+  var centerCard = matches[carouselIndex];
+  var nextCard = matches[(carouselIndex + 1) % len];
+  var visibleSet = [prevCard, centerCard, nextCard];
+
+  projectCards.forEach(function (card) {
+    var show = visibleSet.indexOf(card) !== -1;
+    card.classList.toggle("is-hidden", !show);
+    if (show) card.classList.add("in-view");
+  });
+  prevCard.style.order = 0;
+  centerCard.style.order = 1;
+  nextCard.style.order = 2;
+  centerCard.classList.add("is-center");
+  prevCard.classList.add("is-side");
+  nextCard.classList.add("is-side");
+
+  projectsPrev.classList.remove("is-hidden");
+  projectsNext.classList.remove("is-hidden");
 }
 
 projectsFilters.addEventListener("click", function (e) {
@@ -715,10 +794,32 @@ projectsFilters.addEventListener("click", function (e) {
   projectsFilters.querySelectorAll(".filter-btn").forEach(function (b) {
     b.classList.toggle("active", b === btn);
   });
+  carouselIndex = 0;
   updateProjects();
 });
 
-projectsSearch.addEventListener("input", updateProjects);
+projectsSearch.addEventListener("input", function () {
+  carouselIndex = 0;
+  updateProjects();
+});
+
+projectsPrev.addEventListener("click", function () {
+  carouselIndex--;
+  updateProjects();
+});
+
+projectsNext.addEventListener("click", function () {
+  carouselIndex++;
+  updateProjects();
+});
+
+var projectsResizeTimer;
+window.addEventListener("resize", function () {
+  clearTimeout(projectsResizeTimer);
+  projectsResizeTimer = setTimeout(updateProjects, 150);
+});
+
+updateProjects();
 
 var translations = {
   en: {
@@ -773,8 +874,8 @@ var translations = {
     "project.ri.cta": "View on GitHub →",
 
     "project.kag.category": "Generative AI · KAG",
-    "project.kag.title": "KAG Industrial Maintenance — Mining Asset Maintenance",
-    "project.kag.summary": "Knowledge Augmented Generation (KAG) system for mining asset maintenance, extracting knowledge from equipment manuals and building a knowledge graph for fault diagnosis across vibrating screens, belt conveyors, haul trucks and jaw crushers. Every answer is traced through real relationships in the graph — symptom → cause → action — via a deterministic algorithm, not semantic text similarity.",
+    "project.kag.title": "KAG Industrial Maintenance",
+    "project.kag.summary": "Knowledge Augmented Generation (KAG) system for mining asset maintenance, extracting knowledge from technical manuals and building a fault graph — symptom, cause and action — ensuring traceable answers through real relationships, not semantic text similarity.",
     "project.kag.techsList": "<li>Python</li><li>KAG</li><li>NetworkX</li><li>OpenAI GPT-4o</li><li>Streamlit</li><li>PyVis</li>",
     "project.kag.cta": "View on GitHub →",
 
