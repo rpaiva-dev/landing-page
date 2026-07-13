@@ -433,7 +433,7 @@ a { color: inherit; }
         <div class="projects-filters" id="projectsFilters">
           <button type="button" class="filter-btn active" data-filter="all" data-i18n="projects.filter.all">Todos</button>
           <button type="button" class="filter-btn" data-filter="ar" data-i18n="projects.filter.ar">Realidade Aumentada</button>
-          <button type="button" class="filter-btn" data-filter="rag" data-i18n="projects.filter.rag">IA Generativa · RAG</button>
+          <button type="button" class="filter-btn" data-filter="rag" data-i18n="projects.filter.rag">IA Generativa</button>
         </div>
         <input
           type="search"
@@ -496,6 +496,36 @@ a { color: inherit; }
         </ul>
         <br />
         <span class="project-link" data-i18n="project.ri.cta">Ver no GitHub →</span>
+      </a>
+
+      <a
+        class="project-card reveal"
+        data-area="rag"
+        href="https://rpaiva-dev.github.io/kag_industrial_maintenance/"
+        target="_blank"
+        rel="noopener"
+      >
+        <span class="card-category" data-i18n="project.kag.category">IA Generativa · KAG</span>
+        <h3 data-i18n="project.kag.title">KAG Industrial Maintenance — Manutenção de Ativos de Mineração</h3>
+        <p data-i18n="project.kag.summary">
+          Sistema de KAG (Knowledge Augmented Generation) para manutenção de ativos de
+          mineração, que extrai conhecimento de manuais de equipamentos e constrói um
+          grafo de conhecimento para diagnóstico de falhas em peneiras vibratórias,
+          correias transportadoras, caminhões fora de estrada e britadores de mandíbula.
+          Cada resposta é rastreada por relações reais no grafo — sintoma → causa → ação
+          — através de um algoritmo determinístico, e não por similaridade semântica de
+          texto.
+        </p>
+        <ul class="tag-list" data-i18n="project.kag.techsList" data-i18n-html>
+          <li>Python</li>
+          <li>KAG</li>
+          <li>NetworkX</li>
+          <li>OpenAI GPT-4o</li>
+          <li>Streamlit</li>
+          <li>PyVis</li>
+        </ul>
+        <br />
+        <span class="project-link" data-i18n="project.kag.cta">Ver no GitHub →</span>
       </a>
       </div>
 
@@ -726,7 +756,7 @@ var translations = {
     "projects.title": "Featured Projects",
     "projects.filter.all": "All",
     "projects.filter.ar": "Augmented Reality",
-    "projects.filter.rag": "Generative AI · RAG",
+    "projects.filter.rag": "Generative AI",
     "projects.search": "Search projects...",
     "projects.empty": "No projects found.",
 
@@ -741,6 +771,12 @@ var translations = {
     "project.ri.summary": "RAG (Retrieval-Augmented Generation) system built from scratch, without frameworks like LangChain, to answer questions about any PDF document — always citing the source page and section, and admitting when the information is not in the document.",
     "project.ri.techsList": "<li>Python</li><li>RAG</li><li>OpenAI</li><li>Embeddings</li><li>Streamlit</li>",
     "project.ri.cta": "View on GitHub →",
+
+    "project.kag.category": "Generative AI · KAG",
+    "project.kag.title": "KAG Industrial Maintenance — Mining Asset Maintenance",
+    "project.kag.summary": "Knowledge Augmented Generation (KAG) system for mining asset maintenance, extracting knowledge from equipment manuals and building a knowledge graph for fault diagnosis across vibrating screens, belt conveyors, haul trucks and jaw crushers. Every answer is traced through real relationships in the graph — symptom → cause → action — via a deterministic algorithm, not semantic text similarity.",
+    "project.kag.techsList": "<li>Python</li><li>KAG</li><li>NetworkX</li><li>OpenAI GPT-4o</li><li>Streamlit</li><li>PyVis</li>",
+    "project.kag.cta": "View on GitHub →",
 
     "tech.eyebrow": "Stack",
     "tech.title": "Technologies",
